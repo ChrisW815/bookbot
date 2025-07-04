@@ -1,32 +1,28 @@
-with open("books/frankenstein.txt") as f:
+import sys
+from stats import *
+
+if len(sys.argv) != 2:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+
+script_name = sys.argv[0]
+book_path = sys.argv[1]
+
+
+
+with open(book_path) as f:
     file_contents = f.read()
-    words = file_contents.split()
-
-
-
-    def number_of_letters(text):
-        lower_text = text.lower()
-        dict = {}
-        for letters in lower_text:
-            if letters in dict:
-                number_so_far = dict[letters]
-                number_so_far += 1
-                dict[letters] = number_so_far
-            else:
-                dict[letters] = 1
-
-        letters = []
-        letters = list(dict.keys())
-        letters.sort()
-
-        for letter in letters:
-            if letter.isalpha():
-                print(f"The '{letter}' character was found {dict[letter]} times")
-        
-
-
-
-    print("--- Bgin report of books/frankenstein.txt ---")
-    print(f"{len(words)} words found in the document")
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book_path}...")
+    print("----------- Word Count ----------")
+    number_of_words(file_contents)
+    print("--------- Character Count -------")
     number_of_letters(file_contents)
-    print("--- End report ---")
+    print("============= END ===============")
+
+
+
+    
+
+
+
